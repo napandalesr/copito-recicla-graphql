@@ -1,0 +1,24 @@
+services:
+  copito-db:
+    container_name: copito_database
+    image: postgres:16.2
+    volumes:
+      - ./postgres:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT}:5432"
+    environment:
+      - POSTGRES_USER=marabunta
+      - POSTGRES_PASSWORD=marabunta2024
+      - POSTGRES_DB=copitodb
+
+  copito-web:
+    depends_on:
+      - copito-db
+    build: .
+    volumes:
+      - ./pages:/app/pages
+    ports:
+      - "3000:3000"
+    environment:
+      - DB_PORT=5432
+      - DATABASE_URL=postgresql://marabunta:marabunta2024@copito-db:5432/copitodb?schema=public

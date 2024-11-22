@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String  @unique
+  name      String
+  password  String
+}
+
+model Entity {
+  id                Int   @id @default(autoincrement())
+  name              String
+  nameEntity        String
+  category          CATEGORY
+  email             String   @unique
+  city              String
+  neighborhood      String
+  commune           Int
+  position          String
+  address           String
+  phone             Int
+  acopio            Boolean?  @default(false)
+  acopioName        String?
+  prae              Boolean? @default(false)
+  praeName          String?
+  proceda           Boolean? @default(false)
+  procedaProject    String?
+  committee         Boolean? @default(false)
+  attachment        String?
+  reciclyng         Reciclyng[]
+  createdAt DateTime @default(now())
+}
+
+enum CATEGORY {
+  JAC
+  CE
+}
+
+model Reciclyng {
+  id        Int   @id @default(autoincrement())
+  weight    String
+  entityId  Int
+  entity    Entity     @relation(fields: [entityId], references: [id])
+  createdAt DateTime @default(now())
+}
