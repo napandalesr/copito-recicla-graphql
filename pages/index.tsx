@@ -11,7 +11,7 @@ export default function Home() {
   
   const swiperRef = useRef<any>(null);
   return (
-    <main className={"w-screen min-h-fit bg-[url(/images/bg.png)] bg-no-repeat bg-cover text-[#3C3C3B]"}>
+    <main className={"w-screen min-h-full lg:h-auto bg-[url(/images/bg.png)] bg-no-repeat bg-cover text-[#3C3C3B]"}>
       <Swiper
         keyboard
         onSwiper={(swiper) => {

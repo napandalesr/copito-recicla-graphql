@@ -45,6 +45,28 @@ export const EntityTypeDefs = gql`
     attachment: String!
   }
 
+  input EntityInputUpdate {
+    id: ID!
+    name: String!
+    nameEntity: String!
+    category: CATEGORY
+    email: String!
+    city: String!
+    neighborhood: String
+    commune: Int!
+    position: String
+    address: String
+    phone: Int
+    acopio: Boolean
+    acopioName: String
+    prae: Boolean
+    praeName: String
+    proceda: Boolean
+    procedaProject: String
+    committee: Boolean
+    attachment: String!
+  }
+
   type OutEntityByRecicling {
     id: ID!
     name: String!
@@ -61,7 +83,7 @@ export const EntityTypeDefs = gql`
 
   type Mutation {
     createEntity(input: EntityInput!): Entity
-    updateEntity(input: EntityInput!): Entity
+    updateEntity(input: EntityInputUpdate!): Entity
   }
 
   enum CATEGORY {

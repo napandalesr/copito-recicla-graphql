@@ -1,5 +1,6 @@
 import prisma from "@/prisma";
 import { $Enums, Entity } from "@prisma/client";
+import { UserInputError } from "apollo-server-micro";
 
 type InputEntity = {
   input: Entity
@@ -41,6 +42,14 @@ export const entityResolvers = {
   },
   Mutation: {
     createEntity: async(_: unknown, args: InputEntity): Promise<Entity> => {
+      const entityExist = await findEntityByEmail(args.input.email);
+      if(entityExist) {
+        throw new UserInputError('Este correo ya se encuentra registrado', {
+          code: 400,
+          status: 400,
+        })
+      }
+        
       return await prisma.entity.create({
         data: {
           ...args.input
@@ -48,11 +57,12 @@ export const entityResolvers = {
       })
     },
     updateEntity: async(_: unknown, args: InputEntity): Promise<Entity> => {
+      const { id, ...data } = args.input;
       return await prisma.entity.update({
         where: {
-          id: args.input.id
+          id: +id
         },
-        data: args.input
+        data
       })
     }
   }
@@ -64,3 +74,10 @@ const findEntity = async (id: number): Promise<Entity | null> =>
       id
     }
   });
+
+  const findEntityByEmail = async (email: string): Promise<Entity | null> =>
+    await prisma.entity.findFirst({
+      where: {
+        email
+      }
+    });

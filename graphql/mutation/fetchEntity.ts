@@ -24,7 +24,7 @@ export const FETCH_MUTATION_ENTITY = gql`
 `;
 
 export const FETCH_MUTATION_UPDATE_ENTITY = gql`
-  mutation UpdateEntity($input: EntityInput!) {
+  mutation UpdateEntity($input: EntityInputUpdate!) {
     updateEntity(input: $input) {
       id
       name
