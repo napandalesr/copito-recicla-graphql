@@ -40,7 +40,10 @@ jobs:
 
       - name: Build Docker images
         run: |
-          docker-compose up --build -d
+          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} "export DB_PORT=${{ secrets.DB_HOST }} && \
+          export DATABASE_URL=${{ secrets.DATABASE_URL }} && \
+          export NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }} && \
+          docker-compose up -d"
           
       - name: Push files and images to VPS
         run: |
