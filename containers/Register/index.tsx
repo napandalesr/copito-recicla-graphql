@@ -7,7 +7,7 @@ import { InboxOutlined } from '@ant-design/icons';
 import axios from 'axios';
 
 import { useMutationEntity } from '@/hooks/mutation/useMutationEntity';
-import { EntityType } from '@/types/entity';
+import { EntityType, EntityTypeGet } from '@/types/entity';
 import { useMutationUpdateEntity } from '@/hooks/mutation/useMutationUpdateEntity';
 import Loading from '@/components/Loading';
 
@@ -16,7 +16,7 @@ type props = {
 }
 
 type dataProps = {
-  category?: string;
+  category?: "JAC" | "CE";
   name?: string;
   nameEntity?: string;
   position?: string;
@@ -30,9 +30,9 @@ type dataProps = {
   acopioName?: string;
   prae?: boolean;
   praeName?: string;
-  proceda?: string;
+  proceda?: boolean;
   procedaProject?: string;
-  committee?: string;
+  committee?: boolean;
   attachment?: string;
   id?: number;
 }
@@ -42,7 +42,7 @@ const Register = ({
 }: props) => {
   const { useHandleCreateEntity, loading: loadingCreateEntity } = useMutationEntity();
   const { useHandleUpdateEntity, loading: loadingUpdateEntity } = useMutationUpdateEntity();
-  const [category, setCategory] = useState<string>(entity?.category ?? 'JAC');
+  const [category, setCategory] = useState<"JAC" | "CE">(entity?.category ?? 'JAC');
   const [attachmentState, setAttachmentState] = useState<(File | undefined)>();
   const [form] = Form.useForm();
 
@@ -109,10 +109,11 @@ const Register = ({
     }
   }
 
-  const handleUpdate = async (data: EntityType) => {
+  const handleUpdate = async (data: EntityTypeGet) => {
+    const dataToUpdate:EntityTypeGet = data
     try {
       useHandleUpdateEntity({
-        ...entity,
+        ...dataToUpdate,
         ...cleanObject(data)
       })
     } catch (error) {

@@ -10,7 +10,7 @@ import Header from '@/components/Header';
 
 const ReciclajeId = () => {
   const params = useParams<{ id: string }>();
-  const { entities, error, loading } = useQueryEntityById(parseInt(params.id));
+  const { entities, loading } = useQueryEntityById(parseInt(params.id));
   
   if (loading) {
     return <Loading text="Cargando..." type="bars"/>

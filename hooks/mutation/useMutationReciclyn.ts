@@ -6,7 +6,7 @@ import { reciclyngType } from "@/types/recicling";
 export const useMutationReciclyn = () => {
   const [createReciclyng, { loading }] = useMutation(FETCH_MUTATION_RECICLING);
 
-  const useHandleCreateReciclyn = async (data: reciclyngType) => {
+  const HandleCreateReciclyn = async (data: reciclyngType) => {
     const { entityId, weight } = data;
     return await createReciclyng({
       variables: {
@@ -18,5 +18,5 @@ export const useMutationReciclyn = () => {
     })
   };
 
-  return { useHandleCreateReciclyn, loading };
+  return { HandleCreateReciclyn, loading };
 };

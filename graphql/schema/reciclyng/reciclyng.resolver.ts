@@ -1,4 +1,3 @@
-import { Reciclyng } from "@prisma/client";
 
 import prisma from "@/prisma";
 
@@ -15,3 +14,10 @@ export const reciclyngResolver = {
     }
   }
 };
+
+type Reciclyng = {
+  id: number;
+  createdAt: Date;
+  weight: string;
+  entityId: number;
+}

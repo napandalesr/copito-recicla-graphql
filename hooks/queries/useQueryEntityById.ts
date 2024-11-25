@@ -1,10 +1,10 @@
 import { useQuery } from "@apollo/client";
 
 import { FETCH_ENTITY_BY_ID } from "../../graphql/queries/fetchEntities";
-import { ACTION_RESTORE } from "next/dist/client/components/router-reducer/router-reducer-types";
+import { EntityTypeGet } from "@/types/entity";
 
 export const useQueryEntityById = (id: number) => {
-  const { data, loading, error } = useQuery(FETCH_ENTITY_BY_ID, {
+  const { data, loading, error } = useQuery<{findEntity: EntityTypeGet}>(FETCH_ENTITY_BY_ID, {
     variables: { findEntityId: id },
     skip: !id,
   });

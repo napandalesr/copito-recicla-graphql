@@ -9,6 +9,7 @@ import HomeContainer from "@/containers/Home";
 export default function Home() {
   const [current, setCurrent] = useState(0);
   
+  /* eslint-disable @typescript-eslint/no-explicit-any */
   const swiperRef = useRef<any>(null);
   return (
     <main className={"w-screen min-h-full lg:h-auto bg-[url(/images/bg.png)] bg-no-repeat bg-cover text-[#3C3C3B]"}>

@@ -4,7 +4,6 @@ import React, { useRef, useState } from 'react';
 
 import Loading from '@/components/Loading';
 import { useAuth } from '@/hooks/useAuth';
-import { useRouter } from 'next/router';
 import { Button, Form, Input, InputNumber, InputRef, Space, Table, TableColumnsType, TableColumnType } from 'antd';
 import Register from '@/containers/Register';
 import { SearchOutlined } from '@ant-design/icons';
@@ -26,7 +25,6 @@ interface DataType {
 type DataIndex = keyof DataType;
 
 const Reciclaje = () => {
-  const router = useRouter();
   const { logout, session, status } = useAuth();
   const [weightUpdate, setWeightUpdate] = useState(0);
   const [showFormSum, setShowFormSum] = useState(false);
@@ -35,8 +33,8 @@ const Reciclaje = () => {
   const searchInput = useRef<InputRef>(null);
   const [searchText, setSearchText] = useState('');
   
-  const { entities, loading: loadingEntities, error } = useQueryEntityByRecicling();
-  const { useHandleCreateReciclyn, loading: loadingSumaRecicling } = useMutationReciclyn();
+  const { entities, loading: loadingEntities } = useQueryEntityByRecicling();
+  const { HandleCreateReciclyn } = useMutationReciclyn();
 
   const [formUpdate, setFormUpdate] = useState({
     id: 0,
@@ -53,7 +51,7 @@ const Reciclaje = () => {
   const handleSum = async () => {
     const newW = String(parseFloat(formUpdate.weight) + weightUpdate);
 
-    useHandleCreateReciclyn({
+    HandleCreateReciclyn({
       entityId: formUpdate.id,
       weight: newW
     });
@@ -207,8 +205,6 @@ const Reciclaje = () => {
   ];
 
 
-  const handleSubmit = async (data: any) => {
-}
   
   return <main className='p-6 md:py-16 lg:p-24 min-w-screen min-h-screen box-border bg-[url(/images/bg.png)] bg-no-repeat bg-cover'>
     {
@@ -234,8 +230,7 @@ const Reciclaje = () => {
           <Form
             labelCol={{span: 6}}
             wrapperCol={{span: 16}}
-            form={form}
-            onFinish={() => handleSubmit(formUpdate)}>
+            form={form}>
             <Form.Item
                 label="Nombre"
                 required>

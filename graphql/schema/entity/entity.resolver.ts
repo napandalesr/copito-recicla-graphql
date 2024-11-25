@@ -1,22 +1,23 @@
-import prisma from "@/prisma";
-import { $Enums, Entity } from "@prisma/client";
 import { UserInputError } from "apollo-server-micro";
 
+import prisma from "@/prisma";
+import { EntityType, EntityTypeUp } from "@/types/entity";
+
 type InputEntity = {
-  input: Entity
+  input: EntityType
 }
 
 type entityByReciclingType = {
   id: number,
   name: string,
   weight: number,
-  category: $Enums.CATEGORY,
+  category: "JAC" | "CE",
   nameEntity: string
 }
 
 export const entityResolvers = {
   Query: {
-    findAllEntities: async (): Promise<Entity[]> => await prisma.entity.findMany(),
+    findAllEntities: async (): Promise<EntityType[]> => await prisma.entity.findMany(),
     findAllEntitiesByReciclyn: async () => {
       const entities = await prisma.entity.findMany({
         include: {
@@ -24,7 +25,8 @@ export const entityResolvers = {
         }
       });
       const entityByWeight: entityByReciclingType[] = [];
-      entities.forEach(entity => {
+      /* eslint-disable @typescript-eslint/no-explicit-any */
+      entities.forEach((entity: EntityToW) => {
         let weight = 0;
         weight = entity.reciclyng.reduce((suma, reciclyng) => suma + parseFloat(reciclyng.weight), 0);
         entityByWeight.push({
@@ -38,10 +40,10 @@ export const entityResolvers = {
 
       return entityByWeight;
     },
-    findEntity: async (_parent: unknown, args: { id: number }): Promise<Entity | null> => await findEntity(args.id)
+    findEntity: async (_parent: unknown, args: { id: number }): Promise<EntityType | null> => await findEntity(args.id)
   },
   Mutation: {
-    createEntity: async(_: unknown, args: InputEntity): Promise<Entity> => {
+    createEntity: async(_: unknown, args: EntityTypeUp): Promise<EntityType> => {
       const entityExist = await findEntityByEmail(args.input.email);
       if(entityExist) {
         throw new UserInputError('Este correo ya se encuentra registrado', {
@@ -56,11 +58,11 @@ export const entityResolvers = {
         }
       })
     },
-    updateEntity: async(_: unknown, args: InputEntity): Promise<Entity> => {
+    updateEntity: async(_: unknown, args: InputEntity): Promise<EntityType> => {
       const { id, ...data } = args.input;
       return await prisma.entity.update({
         where: {
-          id: +id
+          id: id
         },
         data
       })
@@ -68,16 +70,30 @@ export const entityResolvers = {
   }
 }
 
-const findEntity = async (id: number): Promise<Entity | null> =>
+const findEntity = async (id: number): Promise<EntityType | null> =>
   await prisma.entity.findFirst({
     where: {
       id
     }
   });
 
-  const findEntityByEmail = async (email: string): Promise<Entity | null> =>
+  const findEntityByEmail = async (email: string): Promise<EntityType | null> =>
     await prisma.entity.findFirst({
       where: {
         email
       }
     });
+
+
+type EntityToW = {
+  id: number,
+  name: string,
+  category: "JAC" | "CE",
+  nameEntity: string,
+  reciclyng: {
+    id: number;
+    createdAt: Date;
+    weight: string;
+    entityId: number;
+}[];
+}

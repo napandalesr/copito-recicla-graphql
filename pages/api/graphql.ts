@@ -24,7 +24,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   return apolloServer.createHandler({ path: "/api/graphql" })(req, res);
 };
 
-export default cors((req, res) => handler(req as any, res as any));
+export default cors(async (req, res) => {
+  return handler(req as NextApiRequest, res as NextApiResponse);
+});
 
 export const config = {
   api: {

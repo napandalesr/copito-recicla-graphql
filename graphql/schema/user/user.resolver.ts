@@ -2,7 +2,13 @@ import { UserInputError } from "apollo-server-micro";
 import bcrypt from 'bcrypt';
 
 import prisma from "@/prisma";
-import { User } from "@prisma/client";
+
+type User = {
+  name: string;
+  id: string;
+  email: string;
+  password: string;
+}
 
 export const userResolvers = {
   Query: {

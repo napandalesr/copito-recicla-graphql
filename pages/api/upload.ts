@@ -22,6 +22,7 @@ interface MulterRequest extends NextApiRequest {
 const uploadMiddleware = upload.single('file');
 
 // Convertir middleware de multer en una promesa para usar en Next.js
+/* eslint-disable @typescript-eslint/no-unsafe-function-type */
 const runMiddleware = (req: NextApiRequest, res: NextApiResponse, fn: Function) => {
   return new Promise<void>((resolve, reject) => {
     fn(req, res, (result: unknown) => {
