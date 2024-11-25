@@ -1,10 +1,22 @@
+# Establece la imagen base
 FROM node:20-alpine AS builder
 
+# Configura el directorio de trabajo en el contenedor
 WORKDIR /app
 
-COPY . .
+# Copia el archivo de dependencias y las instala
+COPY package.json package-lock.json ./
 RUN npm ci
 
+# Copia el código fuente y construye el proyecto
+COPY . .
+RUN npm run build
+
+# Configura el entorno de producción
+FROM node:20-alpine
+WORKDIR /app
+COPY --from=builder /app ./
 EXPOSE 3000
 
-CMD ["npm", "run", "dev"]
+# Comando para correr la aplicación
+CMD ["npm", "start"]
