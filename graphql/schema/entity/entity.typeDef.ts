@@ -12,7 +12,7 @@ export const EntityTypeDefs = gql`
     commune: Int!
     position: String
     address: String
-    phone: Int
+    phone: String
     acopio: Boolean
     acopioName: String
     prae: Boolean
@@ -34,7 +34,7 @@ export const EntityTypeDefs = gql`
     commune: Int!
     position: String
     address: String
-    phone: Int
+    phone: String
     acopio: Boolean
     acopioName: String
     prae: Boolean
@@ -56,7 +56,7 @@ export const EntityTypeDefs = gql`
     commune: Int!
     position: String
     address: String
-    phone: Int
+    phone: String
     acopio: Boolean
     acopioName: String
     prae: Boolean

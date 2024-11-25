@@ -31,7 +31,7 @@ model Entity {
   commune           Int
   position          String
   address           String
-  phone             Int
+  phone             String
   acopio            Boolean?  @default(false)
   acopioName        String?
   prae              Boolean? @default(false)

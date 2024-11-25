@@ -35,25 +35,3 @@ export const useQueryEntityById = (id: number) => {
     error,
   };
 };
-
-/**{
-      "acopio": false,
-      "acopioName": null,
-      "address": "Carrera 67a #11a21",
-      "attachment": "/uploads/1732293880050-COPITO RECICLA (NUEVO) .pdf",
-      "category": "JAC",
-      "city": "cali",
-      "committee": false,
-      "commune": 5,
-      "email": "napandalesr@gmail.com",
-      "id": "2",
-      "name": "Test name",
-      "nameEntity": "test jac",
-      "neighborhood": "barrio",
-      "phone": 123456,
-      "position": "Test cargo",
-      "prae": false,
-      "praeName": null,
-      "proceda": false,
-      "procedaProject": null
-  } */

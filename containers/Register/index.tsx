@@ -21,7 +21,7 @@ type dataProps = {
   nameEntity?: string;
   position?: string;
   email?: string;
-  phone?: number;
+  phone?: string;
   city?: string;
   address?: string;
   neighborhood?: string;
@@ -80,7 +80,8 @@ const Register = ({
   };
 
   const handleSubmit = async (data: EntityType) => {
-    data.category = category
+    data.category = category;
+    data.phone = data.phone+"";
     try {
       if(attachmentState) {
         const formData = new FormData();
@@ -110,7 +111,8 @@ const Register = ({
   }
 
   const handleUpdate = async (data: EntityTypeGet) => {
-    const dataToUpdate:EntityTypeGet = data
+    data.phone = data.phone+"";
+    const dataToUpdate:EntityTypeGet = data;
     try {
       useHandleUpdateEntity({
         ...dataToUpdate,
