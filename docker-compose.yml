@@ -10,6 +10,7 @@ services:
       - POSTGRES_USER=marabunta
       - POSTGRES_PASSWORD=marabunta2024
       - POSTGRES_DB=copitodb
+      - JWT_SECRET=""
 
   copito-web:
     depends_on:

@@ -42,7 +42,8 @@ jobs:
         run: |
           ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} "echo 'DB_PORT=${{ secrets.DB_PORT }}' > /home/${{ secrets.VPS_USER }}/copito/.env && \
           echo 'DATABASE_URL=${{ secrets.DATABASE_URL }}' >> /home/${{ secrets.VPS_USER }}/copito/.env && \
-          echo 'NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}' >> /home/${{ secrets.VPS_USER }}/copito/.env"
+          echo 'NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}' >> /home/${{ secrets.VPS_USER }}/copito/.env && \
+          echo 'JWT_SECRET=${{ secrets.JWT_SECRET }}' >> /home/${{ secrets.VPS_USER }}/copito/.env"
 
       - name: Build Docker images
         run: |
