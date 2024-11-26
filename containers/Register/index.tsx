@@ -40,8 +40,9 @@ type dataProps = {
 const Register = ({ 
   entity 
 }: props) => {
-  const { useHandleCreateEntity, loading: loadingCreateEntity } = useMutationEntity();
-  const { useHandleUpdateEntity, loading: loadingUpdateEntity } = useMutationUpdateEntity();
+  const { useHandleCreateEntity } = useMutationEntity();
+  const { useHandleUpdateEntity } = useMutationUpdateEntity();
+  const [loading, setLoading] = useState<boolean>(false);
   const [category, setCategory] = useState<"JAC" | "CE">(entity?.category ?? 'JAC');
   const [attachmentState, setAttachmentState] = useState<(File | undefined)>();
   const [form] = Form.useForm();
@@ -65,7 +66,6 @@ const Register = ({
       const { status } = info.file;
       if (status !== 'uploading') {
         
-        console.log(info.file, info.fileList[0].originFileObj);
         setAttachmentState(info.fileList[0].originFileObj);
       }
       if (status === 'done') {
@@ -80,6 +80,7 @@ const Register = ({
   };
 
   const handleSubmit = async (data: EntityType) => {
+    setLoading(true);
     data.category = category;
     data.phone = data.phone+"";
     try {
@@ -102,7 +103,9 @@ const Register = ({
         });
         form.resetFields();
       }
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
       message.error({
         content: "Error - El correo ya se encuentra registrado"
       })
@@ -111,18 +114,21 @@ const Register = ({
   }
 
   const handleUpdate = async (data: EntityTypeGet) => {
+    setLoading(true);
     data.phone = data.phone+"";
     const dataToUpdate:EntityTypeGet = data;
     try {
-      useHandleUpdateEntity({
+      await useHandleUpdateEntity({
         ...dataToUpdate,
         ...cleanObject(data)
-      })
+      });
+      setLoading(false);
     } catch (error) {
       message.error({
         content: "Error al actualizar los datos"
       })
       console.log("Error - "+error);
+      setLoading(false);
     }
   }
 
@@ -135,7 +141,7 @@ const Register = ({
   return <section className='flex flex-col justify-center items-center md:px-8 mb-8'>
     <h3 className='text-[#3C3C3B] text-4xl font-bold pb-4'>Formulario de {entity?.name ? <>Actualización</> : <>Registro</>}</h3>
     {
-      loadingCreateEntity || loadingUpdateEntity && <Loading text='Guardando' type='balls'/>
+      loading && <Loading text='Guardando' type='balls'/>
     }
     <Form
       form={form}
