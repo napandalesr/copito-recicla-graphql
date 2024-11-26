@@ -47,7 +47,7 @@ jobs:
 
       - name: Build Docker images
         run: |
-          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} "cd /home/${{ secrets.VPS_USER }}/copito && docker-compose up --build -d"
+          ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} "cd /home/${{ secrets.VPS_USER }}/copito && sudo docker-compose up --build -d"
           
       - name: Push files and images to VPS
         run: |
