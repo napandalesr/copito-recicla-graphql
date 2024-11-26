@@ -24,8 +24,6 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      
-
       - name: Add server to known_hosts
         with:
         run: |
@@ -46,11 +44,6 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y docker-compose
-      
-      - name: Grant permissions to /copito/postgres
-        uses: appleboy/ssh-action@v0.1.7
-        run: |
-
 
       - name: Upload environment variables
         run: |
