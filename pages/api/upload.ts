@@ -9,6 +9,9 @@ const upload = multer({
       cb(null, `${Date.now()}-${file.originalname}`);
     },
   }),
+  limits: {
+    fieldSize: 3 * 1024 * 1024
+  }
 });
 
 interface MulterRequest extends NextApiRequest {
