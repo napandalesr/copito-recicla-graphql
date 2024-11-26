@@ -51,10 +51,9 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_KEY }}
           host: ${{ secrets.VPS_IP }}
           username: ${{ secrets.VPS_USER }}
-          password: ${{ secrets.VPS_PASSWORD }}
           port: 22
           script: |
-            sudo chown -R ${{ secrets.VPS_USER }}:${{ secrets.VPS_USER }} /home/***/copito/postgres
+            sudo chown -R ${{ secrets.VPS_USER }}:${{ secrets.VPS_USER }} /home/${{ secrets.VPS_USER }}/copito/postgres
             sudo docker-compose up --build -d
           
       - name: Push files and images to VPS
