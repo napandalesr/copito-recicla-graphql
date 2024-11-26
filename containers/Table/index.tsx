@@ -1,6 +1,6 @@
 "use client"
 
-import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
+import React, { forwardRef, useEffect, useImperativeHandle, useRef, useState, memo, useCallback } from 'react';
 import { Button, Input, InputRef, Space, Table, TableColumnsType, TableColumnType } from 'antd';
 import { FilterDropdownProps } from 'antd/es/table/interface';
 import Highlighter from 'react-highlight-words';
@@ -16,9 +16,7 @@ interface DataType {
 
 type DataIndex = keyof DataType;
 
-type props = {
-  textToSearch :string
-}
+
 
 const TableData = forwardRef((props, ref) => {
   const [searchText, setSearchText] = useState('');
@@ -26,13 +24,15 @@ const TableData = forwardRef((props, ref) => {
   const [data, setData] = useState<DataType[]>([]);
   const searchInput = useRef<InputRef>(null);
 
-  const { entities, loading: loadingEntities, error } = useQueryEntityByRecicling();
+  const { entities, loading: loadingEntities } = useQueryEntityByRecicling();
 
   useEffect(() => {
+    console.log(entities, loadingEntities);
+    
     if(entities) {
       setData(entities);
     }
-  }, [entities]);
+  }, [entities, loadingEntities]);
 
   const search = (text: string) => {
     if(text !== '') {
@@ -164,7 +164,7 @@ const TableData = forwardRef((props, ref) => {
   ];
   return <>
   {
-    loadingEntities ? <></> : <Table<DataType> className='w-full' scroll={{ y: 350 }} columns={columns} dataSource={data} />
+    entities && <Table<DataType> className='w-full' scroll={{ y: 350 }} columns={columns} dataSource={data} />
   }
   </>
 })

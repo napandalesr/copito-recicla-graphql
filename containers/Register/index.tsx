@@ -104,6 +104,7 @@ const Register = ({
         form.resetFields();
       }
       setLoading(false);
+      location.reload();
     } catch (error) {
       setLoading(false);
       message.error({
