@@ -45,7 +45,7 @@ jobs:
           echo 'NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}' >> /home/${{ secrets.VPS_USER }}/copito/.env && \
           echo 'JWT_SECRET=${{ secrets.JWT_SECRET }}' >> /home/${{ secrets.VPS_USER }}/copito/.env"
 
-      - name: Grant permissions to /copito/postgres
+      - name: Grant permissions to /copito/postgres and Build Docker images
         uses: webfactory/ssh-agent@v0.5.3
         with:
           ssh-private-key: ${{ secrets.SSH_KEY }}
