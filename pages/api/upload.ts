@@ -10,7 +10,7 @@ const upload = multer({
     },
   }),
   limits: {
-    fieldSize: 3 * 1024 * 1024
+    fieldSize: 2 * 1024 * 1024
   }
 });
 
