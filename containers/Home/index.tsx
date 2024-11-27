@@ -39,7 +39,7 @@ const HomeContainer = () => {
     <section className={`flex flex-col-reverse md:flex-col  relative md:mt-6 lg:mt-0 md:gap-4 lg:gap-0 lg:flex-row items-center w-full transition-all ease-in-out duration-300 ${showTable ? 'top-16 md:top-[25.5rem] lg:top-10 2xl:top-20 3xl:top-32 absolute' : 'md:top-1/2 min-h-[50vh]'}`}>
       <section className={`lg:pl-28 flex flex-col lg:flex-row items-end gap-2 md:gap-4 lg:gap-6 w-[92%] lg:w-1/2 justify-center transition-all ease-in-out duration-300 ${showTable ? 'absolute md:static -top-[80%] xl:-mt-[35%] lg:w-[40%]' : 'w-1/2 pt-6 lg:pt-12 xl:pt-0'}`}>
         <div className={"flex flex-col items-center lg:items-start justify-start gap-2 md:gap-4 lg:gap-6 w-full mb-8"}>
-          <h2 className={"text-center w-full lg:w-auto text-xl xl:text-3xl font-bold"}>¡Consulta cuánto llevas!!</h2>
+          <h2 className={"text-center w-full lg:w-auto text-xl xl:text-3xl font-bold"}>¡Consulta cuánto llevas!!!!</h2>
           <section className='w-full flex flex-col md:flex-row gap-1 md:gap-6'>
             <input onFocus={() => setShowTable(true)}
               onChange={handleInputChange}
