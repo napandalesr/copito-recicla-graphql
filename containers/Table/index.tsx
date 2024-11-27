@@ -16,8 +16,6 @@ interface DataType {
 
 type DataIndex = keyof DataType;
 
-
-
 const TableData = forwardRef((props, ref) => {
   const [searchText, setSearchText] = useState('');
   const [searchedColumn, setSearchedColumn] = useState('');
@@ -27,8 +25,6 @@ const TableData = forwardRef((props, ref) => {
   const { entities, loading: loadingEntities } = useQueryEntityByRecicling();
 
   useEffect(() => {
-    console.log(entities, loadingEntities);
-    
     if(entities) {
       setData(entities);
     }
@@ -150,7 +146,14 @@ const TableData = forwardRef((props, ref) => {
       title: 'Nombre',
       dataIndex: 'name',
       key: 'name',
-      width: '50vw',
+      width: '25vw',
+      ...getColumnSearchProps('name'),
+    },
+    {
+      title: 'Entidad',
+      dataIndex: 'nameEntity',
+      key: 'nameEntity',
+      width: '40vw',
       ...getColumnSearchProps('name'),
     },
     {
