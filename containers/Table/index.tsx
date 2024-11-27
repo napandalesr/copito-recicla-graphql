@@ -157,7 +157,7 @@ const TableData = forwardRef((props, ref) => {
       ...getColumnSearchProps('name'),
     },
     {
-      title: 'Peso',
+      title: 'Reciclado',
       dataIndex: 'weight',
       key: 'weight',
       ...getColumnSearchProps('weight'),
@@ -167,7 +167,7 @@ const TableData = forwardRef((props, ref) => {
   ];
   return <>
   {
-    entities && <Table<DataType> className='w-full' scroll={{ y: 350 }} columns={columns} dataSource={data} />
+    entities && <Table<DataType> className='w-full' scroll={{ y: 350 }} columns={columns} dataSource={data} pagination={{ pageSize: 5 }} />
   }
   </>
 })
