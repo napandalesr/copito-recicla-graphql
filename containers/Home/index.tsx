@@ -31,8 +31,8 @@ const HomeContainer = () => {
           <Image className={`w-1/4 mx-auto md:h-[40%] object-contain`} src={'/images/logo-corpocuencas.png'} alt='Copito' width={1920} height={1080}/>
         </section>
         <section className={`flex flex-col p-6 md:p-2 justify-center items-center transition-all ease-in-out duration-300 mx-auto ${showTable ? 'h-[20vh] px-8 md:w-1/3 md:-translate-y-48 lg:translate-y-0 md:translate-x-32 lg:translate-x-24 mt-10' : 'md:-translate-y-32 lg:translate-y-0 h-full px-8 md:px-24 lg:px-6 w-full lg:w-1/2'}`}>
-          <Image className={`h-full w-min scale-150 md:scale-110 aspect-square object-contain z-10 drop-shadow-lg transition-all ease-in-out duration-300 ${showTable ? 'scale-150 lg:scale-[2.6] opacity-0 select-none pointer-events-none lg:select-auto lg:pointer-events-auto lg:opacity-100' : 'mb-2 lg:w-[80%]'}`} src={'/images/copito-log.png'} alt='Copito' width={2566} height={3225}/>
-          <Link href={'/formulario'} className={`border-4 border-white/50 px-6 py-2 font-bold text-white rounded-3xl bg-[#269E94] z-30 transition-all duration-200 ease-in-out ${showTable ? 'opacity-0 select-none pointer-events-none' : 'text-lg lg:text-4xl'}`}>Registrarme</Link>
+          <Image className={`h-full w-min scale-150 md:scale-100 aspect-square object-contain z-10 drop-shadow-lg transition-all ease-in-out duration-300 ${showTable ? 'scale-150 lg:scale-[2.6] opacity-0 select-none pointer-events-none lg:select-auto lg:pointer-events-auto lg:opacity-100' : 'mb-2 lg:w-[80%]'}`} src={'/images/copito-log.png'} alt='Copito' width={2566} height={3225}/>
+          <Link href={'/formulario'} className={`border-4 border-white/50 px-6 py-2 font-bold text-white rounded-3xl bg-[#269E94] z-30 transition-all duration-200 ease-in-out ${showTable ? 'opacity-0 select-none pointer-events-none' : 'text-lg lg:text-2xl'}`}>Registrarme</Link>
         </section>
       </section>
     </section>
