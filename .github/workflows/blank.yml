@@ -56,5 +56,5 @@ jobs:
             sudo chown -R ${{ secrets.VPS_USER }}:${{ secrets.VPS_USER }} /home/${{ secrets.VPS_USER }}/copito/postgres
             cd /home/${{ secrets.VPS_USER }}/copito
             docker-compose down
-            docker-compose up -d
+            docker-compose up --build -d
           EOF
