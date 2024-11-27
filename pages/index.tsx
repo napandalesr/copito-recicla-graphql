@@ -1,19 +1,19 @@
 "use client"
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import {Swiper, SwiperSlide} from 'swiper/react';
 import {Navigation} from 'swiper/modules';
-import { ArrowLeftSquare } from "react-bootstrap-icons";
 import HomeContainer from "@/containers/Home";
 
 export default function Home() {
-  const [current, setCurrent] = useState(0);
+  //const [current, setCurrent] = useState(0);
   
   /* eslint-disable @typescript-eslint/no-explicit-any */
   const swiperRef = useRef<any>(null);
   return (
     <main className={"w-screen  lg:h-auto bg-[url(/images/bg.png)] bg-no-repeat bg-cover text-[#3C3C3B]"}>
-      <Swiper
+      {/**
+       * <Swiper
         keyboard
         onSwiper={(swiper) => {
           swiperRef.current = swiper;
@@ -26,6 +26,21 @@ export default function Home() {
         allowSlideNext
         mousewheel
         onSlideChange={(swiper) => setCurrent(swiper.activeIndex)}
+        className={`!min-h-screen flex`}
+      >
+       */}
+      <Swiper
+        keyboard
+        onSwiper={(swiper) => {
+          swiperRef.current = swiper;
+        }}
+        modules={[Navigation]}
+        slidesPerView={'auto'}
+        scrollbar={{draggable: true}}
+        navigation
+        pagination={{clickable: true}}
+        allowSlideNext
+        mousewheel
         className={`!min-h-screen flex`}
       >
         {/*<button
