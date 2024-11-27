@@ -53,7 +53,7 @@ jobs:
       - name: Deploy on VPS
         run: |
           ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
-            sudo chown -R ${{ secrets.VPS_USER }}:${{ secrets.VPS_USER }} /home/${{ secrets.VPS_USER }}/copito/postgres
+            echo "${{ secrets.VPS_PASSWORD }}" | sudo chown -R ${{ secrets.VPS_USER }}:${{ secrets.VPS_USER }} /home/${{ secrets.VPS_USER }}/copito/postgres
             cd /home/${{ secrets.VPS_USER }}/copito
             docker-compose down
             docker-compose up -d
