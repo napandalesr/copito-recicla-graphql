@@ -44,17 +44,6 @@ jobs:
           echo 'DATABASE_URL=${{ secrets.DATABASE_URL }}' >> /home/${{ secrets.VPS_USER }}/copito/.env && \
           echo 'NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }}' >> /home/${{ secrets.VPS_USER }}/copito/.env && \
           echo 'JWT_SECRET=${{ secrets.JWT_SECRET }}' >> /home/${{ secrets.VPS_USER }}/copito/.env"
-
-      - name: Grant permissions to /copito/postgres and Build Docker images
-        uses: webfactory/ssh-agent@v0.5.3
-        with:
-          ssh-private-key: ${{ secrets.SSH_KEY }}
-          host: ${{ secrets.VPS_IP }}
-          username: ${{ secrets.VPS_USER }}
-          port: 22
-          script: |
-            sudo chown -R ${{ secrets.VPS_USER }}:${{ secrets.VPS_USER }} /home/${{ secrets.VPS_USER }}/copito/postgres
-            sudo docker-compose up --build -d
           
       - name: Push files and images to VPS
         run: |
@@ -64,6 +53,7 @@ jobs:
       - name: Deploy on VPS
         run: |
           ssh ${{ secrets.VPS_USER }}@${{ secrets.VPS_IP }} << 'EOF'
+            sudo chown -R ${{ secrets.VPS_USER }}:${{ secrets.VPS_USER }} /home/${{ secrets.VPS_USER }}/copito/postgres
             cd /home/${{ secrets.VPS_USER }}/copito
             docker-compose down
             docker-compose up -d
