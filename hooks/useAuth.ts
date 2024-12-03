@@ -4,7 +4,7 @@ export const useAuth = () => {
   const { data: session, status } = useSession();
 
   const login = async (email: string, password: string) => {
-    await signIn('credentials', { email, password, callbackUrl: 'https://copitorecicla.com/reciclaje' });
+    await signIn('credentials', { email, password, callbackUrl: '/reciclaje' });
   };
 
   const logout = () => signOut();
