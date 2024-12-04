@@ -1,16 +1,17 @@
 "use client"
 
 import React, { useRef, useState } from 'react';
-
-import Loading from '@/components/Loading';
-import { useAuth } from '@/hooks/useAuth';
-import { Button, Form, Input, InputNumber, InputRef, Space, Table, TableColumnsType, TableColumnType } from 'antd';
-import Register from '@/containers/Register';
+import { useRouter } from 'next/router';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import { FilterDropdownProps } from 'antd/es/table/interface';
 import { Eye, PlusSquare } from 'react-bootstrap-icons';
+import { Button, Form, Input, InputNumber, InputRef, Space, Table, TableColumnsType, TableColumnType } from 'antd';
 import Link from 'next/link';
+
+import Loading from '@/components/Loading';
+import { useAuth } from '@/hooks/useAuth';
+import Register from '@/containers/Register';
 import { useQueryEntityByRecicling } from '@/hooks/queries/useQueryEntityByRecicling';
 import { useMutationReciclyn } from '@/hooks/mutation/useMutationReciclyn';
 
@@ -32,6 +33,7 @@ const Reciclaje = () => {
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef<InputRef>(null);
   const [searchText, setSearchText] = useState('');
+  const router = useRouter();
   
   const { entities, loading: loadingEntities } = useQueryEntityByRecicling();
   const { HandleCreateReciclyn } = useMutationReciclyn();
@@ -58,10 +60,10 @@ const Reciclaje = () => {
   };
 
 
-  /*if(status == "unauthenticated") {
+  if(status == "unauthenticated") {
     router.push("/");
     return <Loading text="Redirigiendo..." type="bars"/>
-  }*/
+  }
 
   const handleSearch = (
     selectedKeys: string[],
