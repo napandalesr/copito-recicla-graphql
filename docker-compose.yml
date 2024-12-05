@@ -22,4 +22,4 @@ services:
       - "${PORT}:3000"
     environment:
       - DB_PORT=${DB_PORT}
-      - DATABASE_URL=${DATABASE_URL_PRD}
+      - DATABASE_URL=${DATABASE_URL}
