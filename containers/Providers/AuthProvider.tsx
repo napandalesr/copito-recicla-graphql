@@ -11,7 +11,7 @@ const AuthProvider = ({ children }: Props) => {
   const { status } = useSession();
 
   if (status == "loading") {
-    return <Loading text="Cargando..." type="bars"/>
+    return <Loading text="Cargando..." type="spinningBubbles"/>
   }
   return children
 }

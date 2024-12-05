@@ -44,7 +44,8 @@ export const FETCH_ENTITIES_BY_RECICLING = gql`
       name
       nameEntity
       weight
-      id,
+      city
+      id
       category
     }
   }

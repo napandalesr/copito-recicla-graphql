@@ -11,6 +11,7 @@ type entityByReciclingType = {
   id: number,
   name: string,
   weight: number,
+  city: string,
   category: "JAC" | "CE",
   nameEntity: string
 }
@@ -34,7 +35,8 @@ export const entityResolvers = {
           name: entity.name,
           weight: weight,
           category: entity.category,
-          nameEntity: entity.nameEntity
+          nameEntity: entity.nameEntity,
+          city: entity.city
         });
       });
 
@@ -90,6 +92,7 @@ type EntityToW = {
   name: string,
   category: "JAC" | "CE",
   nameEntity: string,
+  city: string,
   reciclyng: {
     id: number;
     createdAt: Date;

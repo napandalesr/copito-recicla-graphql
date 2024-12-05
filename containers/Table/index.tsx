@@ -12,6 +12,7 @@ interface DataType {
   name: string;
   weight: string;
   category: string;
+  city: string
 }
 
 type DataIndex = keyof DataType;
@@ -143,6 +144,13 @@ const TableData = forwardRef((props, ref) => {
       ...getColumnSearchProps('category'),
     },
     {
+      title: 'Municipio',
+      dataIndex: 'city',
+      key: 'city',
+      width: '200px',
+      ...getColumnSearchProps('city'),
+    },
+    {
       title: 'Nombre',
       dataIndex: 'name',
       key: 'name',
@@ -163,6 +171,7 @@ const TableData = forwardRef((props, ref) => {
       ...getColumnSearchProps('weight'),
       sorter: (a: { weight: string | string[]; }, b: { weight: string | string[]; }) => a.weight.length - b.weight.length,
       sortDirections: ['descend', 'ascend'],
+      render: (text) => <>{text} {text == 0 ? '' : 'kl'}</>,
     }
   ];
   return <>

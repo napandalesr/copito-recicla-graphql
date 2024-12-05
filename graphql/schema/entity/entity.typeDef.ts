@@ -71,6 +71,7 @@ export const EntityTypeDefs = gql`
     id: ID!
     name: String!
     nameEntity: String!
+    city: String!
     weight: Float!
     category: CATEGORY!
   }
