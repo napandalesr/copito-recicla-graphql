@@ -215,15 +215,15 @@ const Register = ({
               name="city"
               required>
               <Select className='md:!text-2xl' placeholder='Municipio'>
-                <Select.Option value="cali">Cali</Select.Option>
-                <Select.Option value="guadalajara">Guadalajara de Buga</Select.Option>
-                <Select.Option value="yumbo">Yumbo</Select.Option>
-                <Select.Option value="tulua">Tuluá</Select.Option>
-                <Select.Option value="jamundi">Jamundí</Select.Option>
-                <Select.Option value="candelaria">Candelaria</Select.Option>
-                <Select.Option value="buenaventura">Buenaventura</Select.Option>
-                <Select.Option value="palmira">Palmira</Select.Option>
-                <Select.Option value="cartago">Cartago</Select.Option>
+                <Select.Option value="Cali">Cali</Select.Option>
+                <Select.Option value="Guadalajara">Guadalajara de Buga</Select.Option>
+                <Select.Option value="Yumbo">Yumbo</Select.Option>
+                <Select.Option value="Tulua">Tuluá</Select.Option>
+                <Select.Option value="Jamundi">Jamundí</Select.Option>
+                <Select.Option value="Candelaria">Candelaria</Select.Option>
+                <Select.Option value="Buenaventura">Buenaventura</Select.Option>
+                <Select.Option value="Palmira">Palmira</Select.Option>
+                <Select.Option value="Cartago">Cartago</Select.Option>
               </Select>
             </Form.Item>
             <Form.Item
