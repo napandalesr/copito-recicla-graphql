@@ -14,6 +14,7 @@ RUN npm run build
 
 # Configura el entorno de producción
 FROM node:20-alpine
+RUN apk add --no-cache openssl
 WORKDIR /app
 COPY --from=builder /app ./
 EXPOSE 3000
