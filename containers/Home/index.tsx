@@ -63,7 +63,7 @@ const HomeContainer = () => {
         <p className='text-center'>
         <span className="font-bold">"COPITO, RECICLA"</span> se destaca como una iniciativa ejemplar de gobernanza ambiental que busca no solo sensibilizar, sino también generar un impacto real en la sostenibilidad del Valle del Cauca. <br />
         A través de la participación activa de actores clave como la comunidad educativa y las Juntas de Acción Comunal, se fomenta un sentido de corresponsabilidad en la gestión de residuos, un tema esencial en la lucha contra el cambio climático.
-        <br />Conoce los términos y condiciones <Link className='text-blue-500' href={'/documents/BASES_DEL_CONCURSO_COPITO_RECICLA.pdf'} target='_blank'>aquí</Link>
+        <p className='italic font-bold'>Conoce los términos y condiciones <Link className='text-blue-500 font-normal not-italic' href={'/documents/BASES_DEL_CONCURSO_COPITO_RECICLA.pdf'} target='_blank'>aquí</Link></p>
         </p>
       </section>
     </section>
