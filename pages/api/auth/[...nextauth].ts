@@ -3,7 +3,6 @@ import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcrypt';
 import prisma from '@/prisma';
 
-
 export default NextAuth({
   providers: [
     CredentialsProvider({

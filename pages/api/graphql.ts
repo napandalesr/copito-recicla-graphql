@@ -1,3 +1,4 @@
+//configuración de graphql
 import { ApolloServer } from "apollo-server-micro";
 import Cors from "micro-cors";
 import { NextApiRequest, NextApiResponse } from "next";

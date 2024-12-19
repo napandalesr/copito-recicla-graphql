@@ -1,6 +1,6 @@
 "use client"
 
-import React from 'react';
+import React, { useState } from 'react';
 
 import { Button, Form, FormProps, Input } from 'antd';
 import Image from 'next/image';
@@ -16,6 +16,7 @@ type props = {
 }
 
 const LoginForm = ({login}: props) => {
+  const [eyes, setEyes] = useState<boolean>(false);
   const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
     if(values.email && values.password) {
       await login(values.email, values.password);
@@ -28,9 +29,13 @@ const LoginForm = ({login}: props) => {
   initialValues={{ remember: true }}
   onFinish={onFinish}
   autoComplete="off"
-  className='py-12 !px-16 rounded-2xl shadow-md text-2xl lg:w-[36rem]'
+  className='py-12 !px-16 rounded-2xl shadow-md text-2xl lg:w-[36rem] relative pt-20'
 >
-  <Image className='w-1/2 mx-auto my-3' src={'/images/copito-login.png'} alt='Copito Logo' width={899} height={908}/>
+  <Image className={`w-1/2 mx-auto my-3 transition-opacity ease-in-out absolute top-0 left-1/2 -translate-x-1/2 ${eyes && 'opacity-0'}`} src={'/images/copito-login-eyes.png'} alt='Copito Logo' width={899} height={908}/>
+  <Image className={`w-1/2 mx-auto my-3 transition-opacity ease-in-out absolute top-0 left-1/2 -translate-x-1/2 ${!eyes && 'opacity-0'}`} src={'/images/copito-login.png'} alt='Copito Logo' width={899} height={908}/>
+  <Image className={`w-1/2 mx-auto my-3 transition-opacity ease-in-out opacity-0`} src={'/images/copito-login.png'} alt='Copito Logo' width={899} height={908}/>
+  
+  
   <Form.Item<FieldType>
     name="email"
     rules={[{ required: true, type: 'email', message: 'Por favor ingrese su correo!' }]}
@@ -42,7 +47,7 @@ const LoginForm = ({login}: props) => {
     name="password"
     rules={[{ required: true, message: 'Por favor ingrese su contraseña!' }]}
   >
-    <Input.Password className='px-4 py-2' placeholder='Contraseña' />
+    <Input.Password className='px-4 py-2' placeholder='Contraseña' onFocus={() => setEyes(true)} onBlur={() => setEyes(false)}/>
   </Form.Item>
 
   <Form.Item wrapperCol={{span: 24 }} className={"flex items-center justify-center"}>
