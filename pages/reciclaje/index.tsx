@@ -1,7 +1,6 @@
 "use client"
 
 import React, { useRef, useState } from 'react';
-import { useRouter } from 'next/router';
 import { SearchOutlined } from '@ant-design/icons';
 import Highlighter from 'react-highlight-words';
 import { FilterDropdownProps } from 'antd/es/table/interface';
@@ -33,7 +32,6 @@ const Reciclaje = () => {
   const [searchedColumn, setSearchedColumn] = useState('');
   const searchInput = useRef<InputRef>(null);
   const [searchText, setSearchText] = useState('');
-  const router = useRouter();
   
   const { entities, loading: loadingEntities } = useQueryEntityByRecicling();
   const { HandleCreateReciclyn } = useMutationReciclyn();
@@ -58,12 +56,6 @@ const Reciclaje = () => {
       weight: newW
     });
   };
-
-
-  if(status == "unauthenticated") {
-    router.push("/");
-    return <Loading text="Redirigiendo..." type="bars"/>
-  }
 
   const handleSearch = (
     selectedKeys: string[],
