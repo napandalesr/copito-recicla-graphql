@@ -61,8 +61,9 @@ const HomeContainer = () => {
       </section>
       <section className={`xl:text-xl text-center lg:text-left md:px-10 xl:px-14 2xl:px-28 lg:py-10 w-[90%] lg:w-1/2 text-[#3C3C3B] transition-all ease-in-out ${showTable ? 'opacity-0 pointer-events-none select-none' : ''}`}>
         <p className='text-center'>
-        <span className="font-bold">"COPITO, RECICLA"</span> se destaca como una iniciativa ejemplar de gobernanza ambiental que busca no solo sensibilizar, sino también generar un impacto real en la sostenibilidad del Valle del Cauca. <br />
-        A través de la participación activa de actores clave como la comunidad educativa y las Juntas de Acción Comunal, se fomenta un sentido de corresponsabilidad en la gestión de residuos, un tema esencial en la lucha contra el cambio climático.
+        <span className="font-bold">"COPITO, RECICLA"</span> es una iniciativa ejemplar de gobernanza ambiental que busca sensibilizar y generar un impacto real en la sostenibilidad del 
+        Valle del Cauca. Con la participación activa de actores clave, tales como la comunidad educativa y las Juntas de Acción Comunal, se fomenta la corresponsabilidad en la gestión 
+        de residuos, un aspecto esencial en la lucha contra el cambio climático.
         <p className='italic font-bold'>Conoce los términos y condiciones <Link className='text-blue-500 font-normal not-italic' href={'/documents/BASES_DEL_CONCURSO_COPITO RECICLA_12.pdf'} target='_blank'>aquí</Link></p>
         </p>
       </section>
