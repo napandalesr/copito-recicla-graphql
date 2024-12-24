@@ -2,6 +2,7 @@ services:
   copito-db:
     container_name: copito_database
     image: postgres:16.2
+    restart: always
     volumes:
       - ./postgres:/var/lib/postgresql/data
     ports:
@@ -15,6 +16,7 @@ services:
   copito-web:
     depends_on:
       - copito-db
+    restart: always
     build: .
     volumes:
       - ./pages:/app/pages
