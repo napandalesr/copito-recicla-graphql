@@ -17,6 +17,9 @@ export default NextAuth({
           where: { email: credentials?.email },
         });
 
+        console.log("user", user);
+        
+
         if (user && bcrypt.compareSync(credentials!.password, user.password)) {
           return { id: user.id, name: user.name, email: user.email };
         }
