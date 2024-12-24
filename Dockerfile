@@ -12,6 +12,9 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
+ARG NEXTAUTH_URL=https://copitorecicla.com
+ENV NEXTAUTH_URL=$NEXTAUTH_URL
+
 # Configura el entorno de producción
 FROM node:20-alpine
 RUN apk add --no-cache openssl
